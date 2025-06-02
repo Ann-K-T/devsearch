@@ -1,34 +1,27 @@
-{% extends 'main.html'%} {% block content %}
-<h1>All Projects</h1>
-
-<!-- render data-->
-<p>Lets See what page you are on: {{page}} page</p>
-
-<!-- logic -->
-{% if number > 10 %}
-<p>NUmber is greater than ten guys</p>
-{% else %}
-<p>Number is less than or equal to ten</p>
-{% endif %}
-
+{% extends 'main.html'%}
 <!--  -->
-<p>
-  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo dolores vitae
-  aliquam dignissimos dolorem dolore quas voluptates aliquid molestias vel
-  magnam, laboriosam rem cupiditate. Dicta aspernatur ducimus atque? Eveniet,
-  dolores.
-</p>
-<hr />
-<h1>Projects</h1>
-<ul>
-  {% for project in projects %}
-  <li>
-    Title:
-    <a href="{% url 'project' project.id %}">{{project.title}} ---</a>
-    {{project.description}}
-  </li>
+{% block content %}
 
+<h1>Projects</h1>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Projects</th>
+    <th>Positive Votes</th>
+    <th>Votes</th>
+    <th></th>
+  </tr>
+
+  {% for project in projects %}
+  <tr>
+    <td>{{project.id}}</td>
+    <td>{{project.title}}</td>
+    <td>{{project.vote_ratio}}%</td>
+    <td>{{project.vote_total}}</td>
+    <td>{{project.created}}</td>
+    <td><a href="{% url 'project' project.id %}">View</a></td>
+  </tr>
   {% endfor %}
-</ul>
+</table>
 
 {% endblock content %}
